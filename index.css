@@ -43,8 +43,16 @@ ul {
 	justify-content: space-between;
 }
 
+.j-c-center {
+	justify-content: center;
+}
+
 .a-i-center {
 	align-items: center;
+}
+
+.a-i-space-between {
+	align-content: space-between;
 }
 
 /*body-style*/
@@ -106,8 +114,29 @@ ul {
 }
 
 .hexagon-content {
+	width: 100%;
+	flex-wrap: wrap;
 	z-index: 9;
 	position: relative;
+	padding: 25% 0;
+	font-size: 1.6em;
+	flex-direction: column;
+}
+
+.date {
+	font-size: 1.4em;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.button {
+	border: 1px solid #000000;
+	font-size: 0.75em;
+	background-color: transparent;
+	border-radius: 5px;
+	cursor: pointer;
+	opacity: 0;
+	padding: 0;
 }
 
 .trash {
@@ -128,6 +157,31 @@ ul {
 	height: 7em;
 	border-radius: 0.4em / 0.9em;
 	z-index: 0;
+}
+
+.hexagon .button,
+.hexagon .time,
+.hexagon .location {
+	font-size: 0;
+	transition: all 2s;
+}
+
+.hexagon .date {
+	font-size: 75%;
+	transition: all 2s;
+}
+
+.hexagon:nth-child(3 of .show) .time,
+.hexagon:nth-child(3 of .show) .location,
+.hexagon:nth-child(3 of .show) .date{
+	font-size: 100%;
+	white-space: nowrap;
+}
+
+.hexagon:nth-child(3 of .show) .button {
+	font-size: 0.75em;
+	opacity: 1;
+	padding: 10px;
 }
 
 .hexagon:before, .hexagon:after {

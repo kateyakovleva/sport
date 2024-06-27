@@ -97,12 +97,13 @@
 		el.setAttribute('data-index', index)
 		el.classList.add('hexagon');
 		el.classList.add('show');
+		el.classList.add('d-flex');
 		el.onclick = clickHexagon;
 		el.innerHTML = `
-<div class="hexagon-content">
-<span>${event.location}</span>
-<span>${event.date}</span>
-<span>${event.time}</span>
+<div class="hexagon-content d-flex a-i-center j-c-space-between">
+<span class="location">${event.location}</span>
+<span class="date">${event.date}</span>
+<span class="time">${event.time}</span>
 <button class="button">Купить билеты</button>
 </div>`;
 		return el;
