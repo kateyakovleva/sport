@@ -72,13 +72,20 @@
 		activeIndex: 2
 	}
 	function setActiveHexagon(index) {
+		if(index > 4) index = 4;
+		if(index < 0) index = 0;
+		if(index == store.activeIndex) return;
+
 		let container = document.getElementById('container-hexagons');
-		let eLen = events.length - 1;
-		events.reverse().forEach((event, i) =>{
+		container.childNodes.forEach((event, i) =>{
+			i = i-2;
 			let el = container.querySelector(`[data-index="${i}"]`);
-			if(index > 2 && i - index < 0 && !el.classList.contains('hide')) {
-				el.classList.add('hide');
-				el.classList.remove('hexagon');
+			if(i < index - 2) {
+				el.classList.remove('show');
+			}
+
+			if(i >= index - 2) {
+				el.classList.add('show');
 			}
 		})
 
@@ -89,8 +96,10 @@
 		let el = document.createElement("li");
 		el.setAttribute('data-index', index)
 		el.classList.add('hexagon');
+		el.classList.add('show');
+		el.onclick = clickHexagon;
 		el.innerHTML = `
-<div class="hexagon-content" onclick="clickHexagon">
+<div class="hexagon-content">
 <span>${event.location}</span>
 <span>${event.date}</span>
 <span>${event.time}</span>
@@ -101,6 +110,7 @@
 
 	const initHexagon = () => {
 		let container = document.getElementById('container-hexagons');
+		container.innerHTML = '<li data-index="-2" class="trash"/><li data-index="-1" class="trash"/>';
 
 		events.slice(0,5).map((event, index) => {
 			container.appendChild(createEl(event, index));
@@ -110,7 +120,16 @@
 	initHexagon();
 
 	function scrollEvents(e) {
-		console.log(e)
+		if(e.deltaY > 0) {
+			setActiveHexagon(store.activeIndex - 1);
+		} else {
+			setActiveHexagon(store.activeIndex + 1);
+		}
+	}
+
+	function clickHexagon() {
+		let index = this.getAttribute('data-index');
+		setActiveHexagon(parseInt(index));
 	}
 
 	document.getElementById('main').addEventListener("wheel", scrollEvents);

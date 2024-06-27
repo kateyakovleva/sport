@@ -110,7 +110,7 @@ ul {
 	position: relative;
 }
 
-.hide{
+.trash {
 	display: none;
 }
 
@@ -119,8 +119,15 @@ ul {
 	margin: auto;
 	background: #ffffff;
 	transition: all 2s;
-	transform: scale(1);
-	cursor: pointer;
+	transform: scale(0);
+	top: calc((100vh - 110px) / 2 + 16%);
+	left: 0;
+	right: calc(100% / 2);
+	bottom: 0;
+	width: 4.4em;
+	height: 7em;
+	border-radius: 0.4em / 0.9em;
+	z-index: 0;
 }
 
 .hexagon:before, .hexagon:after {
@@ -145,46 +152,38 @@ ul {
 	transform: rotate(-60deg);
 }
 
-.hexagon:nth-child(n+6 of .hexagon) {
+.container-hexagons .show{
+	transform: scale(1);
+	z-index: 1;
+}
+
+.hexagon:nth-child(n+6 of .show) {
 	transform: scale(0);
+	z-index: 0;
 }
 
-/*hexagon-small*/
-.hexagon:nth-child(1 of .hexagon), .hexagon:nth-child(5 of .hexagon) {
-	width: 4.4em;
-	height: 7em;
-	border-radius: 0.4em / 0.9em;
-}
-
-.hexagon:nth-child(5 of .hexagon) {
+.hexagon:nth-child(n+5  of .show) {
 	right: 0;
 	top: 0;
 	left: calc(100% / 2);
 	bottom: calc((100vh - 110px) / 2 + 16%);
 }
 
-.hexagon:nth-child(1 of .hexagon) {
-	top: calc((100vh - 110px) / 2 + 16%);
-	left: 0;
-	right: calc(100% / 2);
-	bottom: 0;
-}
-
 /*hexagon-middle*/
-.hexagon:nth-child(2 of .hexagon), .hexagon:nth-child(4 of .hexagon) {
+.hexagon:nth-child(2 of .show), .hexagon:nth-child(4 of .show) {
 	width: 6.4em;
 	height: 10.2em;
 	border-radius: 0.5em / 1em;
 }
 
-.hexagon:nth-child(4 of .hexagon) {
+.hexagon:nth-child(4 of .show) {
 	right: 0;
 	top: 0;
 	left: calc(100% / 2 - 20%);
 	bottom: calc((100vh - 110px) / 2 - 7%);
 }
 
-.hexagon:nth-child(2 of .hexagon) {
+.hexagon:nth-child(2 of .show) {
 	top: calc((100vh - 110px) / 2 - 7%);
 	left: 0;
 	right: calc(100% / 2 - 20%);
@@ -192,7 +191,7 @@ ul {
 }
 
 /*hexagon-center*/
-.hexagon:nth-child(3 of .hexagon) {
+.hexagon:nth-child(3 of .show) {
 	position: fixed;
 	top: 0;
 	left: 0;
