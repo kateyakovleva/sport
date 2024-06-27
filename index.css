@@ -1,0 +1,207 @@
+body {
+	margin: 0;
+	font-family: "Inter", sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+a:hover {
+	color: #ff9900;
+}
+
+a:after {
+	display: block;
+	content: "";
+	height: 3px;
+	width: 0%;
+	background-color: #ff9900;
+	transition: width 0.4s ease-in-out;
+}
+
+a:hover:after,
+a:focus:after {
+	width: 100%;
+}
+
+li {
+	list-style-type: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.j-c-space-between {
+	justify-content: space-between;
+}
+
+.a-i-center {
+	align-items: center;
+}
+
+/*body-style*/
+
+.body {
+	width: 100%;
+	height: 100vh;
+	background-image: url('images/phone.png');
+	background-position: center;
+	background-size: cover;
+}
+
+/*header-style*/
+
+.header {
+	width: 100%;
+	height: 90px;
+	font-size: 22px;
+}
+
+.container-header {
+	padding: 40px 60px 0;
+}
+
+.subtitle-menu {
+	width: 35%;
+}
+
+.nav-menu-hamburger {
+	width: 15%;
+}
+
+.container-nav-menu-hamburger {
+	width: 50%;
+}
+
+.menu-hamburger:after {
+	background-color: transparent;
+}
+
+.img-login {
+	width: 40px;
+}
+
+.img-menu {
+	width: 40px;
+}
+
+/*main-style*/
+
+.main {
+	width: 100%;
+}
+
+.container-hexagons {
+	position: relative;
+	width: 100%;
+	height: calc(100vh - 110px);
+}
+
+.hexagon-content {
+	z-index: 9;
+	position: relative;
+}
+
+.hide{
+	display: none;
+}
+
+.hexagon {
+	position: fixed;
+	margin: auto;
+	background: #ffffff;
+	transition: all 2s;
+	transform: scale(1);
+	cursor: pointer;
+}
+
+.hexagon:before, .hexagon:after {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	background: inherit;
+	content: '';
+}
+
+.hexagon:before {
+	-webkit-transform: rotate(60deg);
+	-ms-transform: rotate(60deg);
+	transform: rotate(60deg);
+}
+.hexagon:after {
+	-webkit-transform: rotate(-60deg);
+	-ms-transform: rotate(-60deg);
+	transform: rotate(-60deg);
+}
+
+.hexagon:nth-child(n+6 of .hexagon) {
+	transform: scale(0);
+}
+
+/*hexagon-small*/
+.hexagon:nth-child(1 of .hexagon), .hexagon:nth-child(5 of .hexagon) {
+	width: 4.4em;
+	height: 7em;
+	border-radius: 0.4em / 0.9em;
+}
+
+.hexagon:nth-child(5 of .hexagon) {
+	right: 0;
+	top: 0;
+	left: calc(100% / 2);
+	bottom: calc((100vh - 110px) / 2 + 16%);
+}
+
+.hexagon:nth-child(1 of .hexagon) {
+	top: calc((100vh - 110px) / 2 + 16%);
+	left: 0;
+	right: calc(100% / 2);
+	bottom: 0;
+}
+
+/*hexagon-middle*/
+.hexagon:nth-child(2 of .hexagon), .hexagon:nth-child(4 of .hexagon) {
+	width: 6.4em;
+	height: 10.2em;
+	border-radius: 0.5em / 1em;
+}
+
+.hexagon:nth-child(4 of .hexagon) {
+	right: 0;
+	top: 0;
+	left: calc(100% / 2 - 20%);
+	bottom: calc((100vh - 110px) / 2 - 7%);
+}
+
+.hexagon:nth-child(2 of .hexagon) {
+	top: calc((100vh - 110px) / 2 - 7%);
+	left: 0;
+	right: calc(100% / 2 - 20%);
+	bottom: 0;
+}
+
+/*hexagon-center*/
+.hexagon:nth-child(3 of .hexagon) {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 10em;
+	height: 17.32em;
+	border-radius: 1em/.5em;
+	background: #ffffff;
+}
+

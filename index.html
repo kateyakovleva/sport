@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="ru">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<title>Sport</title>
+	<link rel="stylesheet" href="index.css" media="screen">
+	<meta name="referrer" content="origin">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+<header class="header">
+	<div class="container-header d-flex j-c-space-between a-i-center" >
+		<a href="#" class="title-menu">БИЛЕТЫ И АБОНЕМЕНТЫ</a>
+		<div class="subtitle-menu d-flex j-c-space-between a-i-center">
+			<a href="#">Как купить?</a>
+			<a href="#">Правила</a>
+			<a href="#">Возврат билетов</a>
+		</div>
+		<nav class="nav-menu-hamburger d-flex j-c-space-between a-i-center">
+			<div class="container-nav-menu-hamburger d-flex j-c-space-between a-i-center">
+				<img src="images/login.svg" class="img-login" alt="login"/>
+				<a href="#">Войти</a>
+			</div>
+			<a href="#" class="menu-hamburger">
+				<img src="images/menu.svg" class="img-menu" alt="menu" />
+			</a>
+		</nav>
+	</div>
+</header>
+<main class="main" id="main">
+	<ul class="container-hexagons" id="container-hexagons"></ul>
+</main>
+<script>
+	const events = [
+		{
+			location: 'Стадион',
+			date: '26 июня',
+			time: '19:00',
+			revals: [ 'Куприянов', 'Иванов']
+		},
+		{
+			location: 'Олимпия',
+			date: '18 июля',
+			time: '12:00',
+			revals: [ 'Ринатович', 'Иванов']
+		},
+		{
+			location: 'Стадион',
+			date: '12 августа',
+			time: '10:00',
+			revals: [ 'Олешкин', 'Жиганов']
+		},
+		{
+			location: 'Стадион',
+			date: '6 сентября',
+			time: '21:00',
+			revals: [ 'Милин', 'Иванов']
+		},
+		{
+			location: 'Регби-Хаус',
+			date: '2 октября',
+			time: '16:00',
+			revals: [ 'Куприянов', 'Стройбург']
+		}
+	]
+
+	const store = {
+		activeIndex: 2
+	}
+	function setActiveHexagon(index) {
+		let container = document.getElementById('container-hexagons');
+		let eLen = events.length - 1;
+		events.reverse().forEach((event, i) =>{
+			let el = container.querySelector(`[data-index="${i}"]`);
+			if(index > 2 && i - index < 0 && !el.classList.contains('hide')) {
+				el.classList.add('hide');
+				el.classList.remove('hexagon');
+			}
+		})
+
+		store.activeIndex = index;
+	}
+
+	const createEl = (event, index) => {
+		let el = document.createElement("li");
+		el.setAttribute('data-index', index)
+		el.classList.add('hexagon');
+		el.innerHTML = `
+<div class="hexagon-content" onclick="clickHexagon">
+<span>${event.location}</span>
+<span>${event.date}</span>
+<span>${event.time}</span>
+<button class="button">Купить билеты</button>
+</div>`;
+		return el;
+	}
+
+	const initHexagon = () => {
+		let container = document.getElementById('container-hexagons');
+
+		events.slice(0,5).map((event, index) => {
+			container.appendChild(createEl(event, index));
+		});
+	}
+
+	initHexagon();
+
+	function scrollEvents(e) {
+		console.log(e)
+	}
+
+	document.getElementById('main').addEventListener("wheel", scrollEvents);
+
+</script>
+</body>
+</html>
